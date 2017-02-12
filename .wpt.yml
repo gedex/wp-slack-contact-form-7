@@ -9,6 +9,7 @@ files:
         - '!build/**'
         - '!tmp/**'
         - '!README.md'
+        - '!*.xml'
     main: slack-contact-form-7.php
     assets:
         - assets/*.png
