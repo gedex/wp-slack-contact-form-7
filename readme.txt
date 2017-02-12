@@ -4,7 +4,7 @@ Donate link:       http://goo.gl/DELyuR
 Tags:              slack, api, chat, notification, contact, form, cf7, contact-form-7
 Requires at least: 3.6
 Tested up to:      3.8.1
-Stable tag:        trunk
+Stable tag:        0.2.0
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,5 +37,8 @@ You can alter the message with `slack_wpcf7_submit_message` filter. The filter r
 
 == Changelog ==
 
+= 0.2.0 =
+* Fix message is not being sent to Slack caused by changes in wpcf7_submit result arg.
+
 = 0.1.0 =
-Initial release
+* Initial release

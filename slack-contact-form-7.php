@@ -3,7 +3,7 @@
  * Plugin Name: Slack Contact Form 7
  * Plugin URI: https://github.com/gedex/wp-contact-form-7
  * Description: This plugin allows you to send notifications to Slack channels whenever someone sent message through Contact Form 7.
- * Version: 0.1.0
+ * Version: 0.2.0
  * Author: Akeda Bagus
  * Author URI: http://gedex.web.id
  * Text Domain: slack
@@ -21,13 +21,15 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+ *
+ * @package Slack_WPCF7
  */
 
 /**
  * Adds new event that send notification to Slack channel
  * when someone sent message through Contact Form 7.
  *
- * @param  array $events
+ * @param  array $events List of events.
  * @return array
  *
  * @filter slack_get_events
@@ -47,13 +49,18 @@ function wp_slack_wpcf7_submit( $events ) {
 			// @todo: Once attachment is supported in Slack
 			// we can send payload with nicely formatted message
 			// without relying on mail_sent result.
-			if ( $result['mail_sent'] ) {
+			$sent = (
+				! empty( $result['mail_sent'] )
+				||
+				( ! empty( $result['status'] ) && 'mail_sent' === $result['status'] )
+			);
+
+			if ( $sent ) {
 				return apply_filters( 'slack_wpcf7_submit_message',
 					sprintf(
 						__( 'Someone just sent a message through *%s* _Contact Form 7_. Check your email!', 'slack' ),
-						$form->title
+						is_callable( array( $form, 'title' ) ) ? $form->title() : $form->title
 					),
-
 					$form,
 					$result
 				);
