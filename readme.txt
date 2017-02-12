@@ -2,8 +2,8 @@
 Contributors:      akeda
 Donate link:       http://goo.gl/DELyuR
 Tags:              slack, api, chat, notification, contact, form, cf7, contact-form-7
-Requires at least: 3.6
-Tested up to:      3.8.1
+Requires at least: 4.4
+Tested up to:      4.7
 Stable tag:        0.2.0
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
