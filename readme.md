@@ -3,13 +3,13 @@
 
 Send notifications to Slack channels whenever someone sent message through Contact Form 7.
 
-**Contributors:** [akeda](http://profiles.wordpress.org/akeda)  
-**Tags:** [slack](http://wordpress.org/plugins/tags/slack), [api](http://wordpress.org/plugins/tags/api), [chat](http://wordpress.org/plugins/tags/chat), [notification](http://wordpress.org/plugins/tags/notification), [contact](http://wordpress.org/plugins/tags/contact), [form](http://wordpress.org/plugins/tags/form), [cf7](http://wordpress.org/plugins/tags/cf7), [contact-form-7](http://wordpress.org/plugins/tags/contact-form-7)  
-**Requires at least:** 3.6  
-**Tested up to:** 3.8.1  
-**Stable tag:** trunk (master)  
-**License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)  
-**Donate link:** http://goo.gl/DELyuR  
+**Contributors:** [akeda](https://profiles.wordpress.org/akeda)<br>
+**Tags:** [slack](https://wordpress.org/plugins/tags/slack), [api](https://wordpress.org/plugins/tags/api), [chat](https://wordpress.org/plugins/tags/chat), [notification](https://wordpress.org/plugins/tags/notification), [contact](https://wordpress.org/plugins/tags/contact), [form](https://wordpress.org/plugins/tags/form), [cf7](https://wordpress.org/plugins/tags/cf7), [contact-form-7](https://wordpress.org/plugins/tags/contact-form-7)<br>
+**Requires at least:** 4.4<br>
+**Tested up to:** 4.7<br>
+**Stable tag:** 0.2.0<br>
+**License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)<br>
+**Donate link:** http://goo.gl/DELyuR<br>
 
 ## Description ##
 
@@ -43,7 +43,10 @@ You can alter the message with `slack_wpcf7_submit_message` filter. The filter r
 
 ## Changelog ##
 
+### 0.2.0 ###
+* Fix message is not being sent to Slack caused by changes in wpcf7_submit result arg.
+
 ### 0.1.0 ###
-Initial release
+* Initial release
 
 
