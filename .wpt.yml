@@ -1,0 +1,22 @@
+type: plugin
+files:
+    src:
+        - '**'
+        - '!node_modules/**'
+        - '!vendor/**'
+        - '!tests/**'
+        - '!test/**'
+        - '!build/**'
+        - '!tmp/**'
+        - '!README.md'
+    main: slack-contact-form-7.php
+    assets:
+        - assets/*.png
+        - assets/*.svg
+gh:
+    repo: gedex/wp-slack-contact-form-7
+    username: gedex
+wporg:
+    slug: slack-contact-form-7
+    username: akeda
+    buildPath: build
