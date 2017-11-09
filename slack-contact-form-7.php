@@ -64,6 +64,16 @@ function wp_slack_wpcf7_submit( $events ) {
 					$form,
 					$result
 				);
+			} else {
+				return apply_filters( 'slack_wpcf7_submit_message',
+					sprintf(
+						__( 'There was an error sending the message when submitting *%s* _Contact Form 7_.' . PHP_EOL . 'Error message: *%s*', 'slack' ),
+						is_callable( array( $form, 'title' ) ) ? $form->title() : $form->title, 
+						$result['message']
+					),
+					$form,
+					$result
+				);
 			}
 
 			return false;
