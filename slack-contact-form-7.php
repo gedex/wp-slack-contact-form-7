@@ -55,6 +55,14 @@ function wp_slack_wpcf7_submit( $events ) {
 				( ! empty( $result['status'] ) && 'mail_sent' === $result['status'] )
 			);
 
+			$spam = (
+				( ! empty( $result['status'] ) && 'spam' === $result['status'] )
+			);
+
+			$validation_failed = (
+				( ! empty( $result['status'] ) && 'validation_failed' === $result['status'] )
+			);
+
 			if ( $sent ) {
 				return apply_filters( 'slack_wpcf7_submit_message',
 					sprintf(
@@ -64,6 +72,23 @@ function wp_slack_wpcf7_submit( $events ) {
 					$form,
 					$result
 				);
+			} else {
+				if ( ! ($spam || $validation_failed ) ) {
+					return apply_filters( 'slack_wpcf7_submit_message',
+						sprintf(
+							__( 'There was an error sending the message when submitting *%s* _Contact Form 7_.' . PHP_EOL . 
+								'Error message: *%s*' . PHP_EOL . 
+								'Server: *%s*' . PHP_EOL . 
+								'Result: *%s*', 'slack' ),
+							is_callable( array( $form, 'title' ) ) ? $form->title() : $form->title, 
+							$result['message'],
+							$_SERVER['SERVER_NAME'],
+							var_export($result, true)
+						),
+						$form,
+						$result
+					);
+				}
 			}
 
 			return false;
