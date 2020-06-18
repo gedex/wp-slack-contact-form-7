@@ -37,34 +37,34 @@
 function wp_slack_wpcf7_submit( $events ) {
 	$events['wpcf7_submit'] = array(
 		// Action in Gravity Forms to hook in to get the message.
-		'action' => 'wpcf7_submit',
+		'action' => 'wpcf7_mail_sent',
 
 		// Description appears in integration setting.
 		'description' => __( 'When someone sent message through Contact Form 7', 'slack' ),
 
 		// Message to deliver to channel. Returns false will prevent
 		// notification delivery.
-		'message' => function( $form, $result ) {
+		'message' => function( $form) {
 
-			// @todo: Once attachment is supported in Slack
-			// we can send payload with nicely formatted message
-			// without relying on mail_sent result.
-			$sent = (
-				! empty( $result['mail_sent'] )
-				||
-				( ! empty( $result['status'] ) && 'mail_sent' === $result['status'] )
-			);
+			$submission = WPCF7_Submission::get_instance();  
+			$posted_data = null;
+			if ( $submission ) {
+				$posted_data = $submission->get_posted_data();
+			}
+			$message = 'Someone added a submission in '. $form->title();
 
-			if ( $sent ) {
+			$message .= '\nForm Data: ';
+			foreach ($posted_data as $key => $value) {
+				if (strpos($key, 'wpcf7') === false) {
+					$message .= $key . ': ' . $value . "\n"; 
+				}
+			}
 				return apply_filters( 'slack_wpcf7_submit_message',
-					sprintf(
-						__( 'Someone just sent a message through *%s* _Contact Form 7_. Check your email!', 'slack' ),
-						is_callable( array( $form, 'title' ) ) ? $form->title() : $form->title
-					),
+					$message,
 					$form,
 					$result
 				);
-			}
+			
 
 			return false;
 		}
