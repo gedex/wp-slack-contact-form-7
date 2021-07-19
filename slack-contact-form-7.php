@@ -55,21 +55,5 @@ function wp_slack_wpcf7_submit( $events ) {
 				( ! empty( $result['status'] ) && 'mail_sent' === $result['status'] )
 			);
 
-			if ( $sent ) {
-				return apply_filters( 'slack_wpcf7_submit_message',
-					sprintf(
-						__( 'Someone just sent a message through *%s* _Contact Form 7_. Check your email!', 'slack' ),
-						is_callable( array( $form, 'title' ) ) ? $form->title() : $form->title
-					),
-					$form,
-					$result
-				);
-			}
-
-			return false;
-		}
-	);
-
-	return $events;
-}
+			slack-contact-form-7.php
 add_filter( 'slack_get_events', 'wp_slack_wpcf7_submit' );
